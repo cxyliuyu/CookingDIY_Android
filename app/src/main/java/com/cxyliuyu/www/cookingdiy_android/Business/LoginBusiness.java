@@ -7,11 +7,11 @@ import android.os.Handler;
  */
 public class LoginBusiness {
 
-    //登录的业务逻辑
     public void login(final Handler loginHandler){
+        //登录
 
     }
     public void logout(final Handler logoutHandler){
-
+        //退出登录
     }
 }
