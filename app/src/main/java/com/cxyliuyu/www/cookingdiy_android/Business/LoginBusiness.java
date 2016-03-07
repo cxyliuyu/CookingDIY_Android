@@ -7,11 +7,9 @@ import android.os.Handler;
  */
 public class LoginBusiness {
 
-    public void login(final Handler loginHandler){
+    public void login(String username ,String password,final Handler loginHandler){
         //登录
 
     }
-    public void logout(final Handler logoutHandler){
-        //退出登录
-    }
+
 }
