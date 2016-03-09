@@ -1,12 +1,14 @@
 package com.cxyliuyu.www.cookingdiy_android.Activity.listener;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
 import com.cxyliuyu.www.cookingdiy_android.Business.LoginBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
@@ -26,22 +28,17 @@ public class MyNavigationItemSelectedListener implements OnNavigationItemSelecte
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.nav_me) {
             // Handle the camera action
-
-            //测试登录
-            LoginBusiness loginBusiness = new LoginBusiness(context);
-            loginBusiness.login();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Log.i("cookingdiy","个人中心被点击了");
+            //判断用户是否登录
+            if(LoginBusiness.isLogin() == false){
+                //用户未登录，进入登录页面
+                Intent intent = new Intent(context, LoginActivity.class);
+                context.startActivity(intent);
+            }else{
+                //用户已登录，进入个人中心
+            }
         }
         DrawerLayout drawer = (DrawerLayout) context.findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -20,4 +20,8 @@ public class LoginBusiness {
         RequestQueue mQueue = Volley.newRequestQueue(context);
     }
 
+    public static boolean isLogin(){
+        return false;
+    }
+
 }
