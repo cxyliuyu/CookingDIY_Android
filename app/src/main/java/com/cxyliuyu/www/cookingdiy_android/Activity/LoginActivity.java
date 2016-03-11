@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity  {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            Log.i("cookingdiylog","UserLoginTask");
+            Log.i("COOKINGIDY","UserLoginTask");
             LoginBusiness loginBusiness = new LoginBusiness(LoginActivity.this);
             Boolean result = loginBusiness.login(userName, password);
             return true;
