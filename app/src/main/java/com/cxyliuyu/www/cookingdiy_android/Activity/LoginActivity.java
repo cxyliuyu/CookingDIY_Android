@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import com.cxyliuyu.www.cookingdiy_android.Business.LoginBusiness;
+import com.cxyliuyu.www.cookingdiy_android.Business.UserBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 
@@ -24,7 +24,7 @@ import com.cxyliuyu.www.cookingdiy_android.R;
 public class LoginActivity extends AppCompatActivity  {
 
 
-    private UserLoginTask userLoginTask = null;
+    private UserTask userTask = null;
 
     // UI references.
     private AutoCompleteTextView mUserNameView;
@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 String userName = mUserNameView.getText().toString();
                 String password = mPasswordView.getText().toString();
-                userLoginTask = new UserLoginTask(userName,password);
-                userLoginTask.execute();
+                userTask = new UserTask(userName,password);
+                userTask.execute();
                 showProgress(true);
 
             }
@@ -102,12 +102,12 @@ public class LoginActivity extends AppCompatActivity  {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String userName;
         private final String password;
 
-        UserLoginTask(String userName, String password) {
+        UserTask(String userName, String password) {
             this.userName = userName;
             this.password = password;
         }
@@ -115,14 +115,14 @@ public class LoginActivity extends AppCompatActivity  {
         @Override
         protected Boolean doInBackground(Void... params) {
             Log.i("COOKINGIDY","UserLoginTask");
-            LoginBusiness loginBusiness = new LoginBusiness(LoginActivity.this);
-            Boolean result = loginBusiness.login(userName, password);
+            UserBusiness userBusiness = new UserBusiness(LoginActivity.this);
+            Boolean result = userBusiness.login(userName, password);
             return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            userLoginTask = null;
+            userTask = null;
             showProgress(false);
 
             if (success) {
@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity  {
 
         @Override
         protected void onCancelled() {
-            userLoginTask = null;
+            userTask = null;
             showProgress(false);
         }
     }

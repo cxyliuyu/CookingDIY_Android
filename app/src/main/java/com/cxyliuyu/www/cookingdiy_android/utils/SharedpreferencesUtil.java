@@ -19,9 +19,9 @@ public class SharedpreferencesUtil {
         editor.putString(key,value);
         editor.commit();
     }
-    public static Boolean getBoolean(Context context,String key){
+    public static Boolean getBoolean(Context context,String key,Boolean defaultValue){
         SharedPreferences sharedPreferences = context.getSharedPreferences("COOKINGDIY",Context.MODE_PRIVATE);
-        Boolean value = sharedPreferences.getBoolean(key,false);
+        Boolean value = sharedPreferences.getBoolean(key,defaultValue);
         return value;
     }
     public static void setBoolean(Context context,String key,Boolean value){

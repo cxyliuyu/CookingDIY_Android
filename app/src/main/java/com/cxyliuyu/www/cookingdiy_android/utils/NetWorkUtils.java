@@ -67,8 +67,13 @@ public class NetWorkUtils {
         }
         String result = buffer.toString();//返回低字符串
         Log.i(URLUtils.LOGTAG,"result = "+ result);
-
-        return null;
+        JSONObject josonResult = null;
+        try{
+            josonResult = new JSONObject(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return josonResult;
 
     }
 
