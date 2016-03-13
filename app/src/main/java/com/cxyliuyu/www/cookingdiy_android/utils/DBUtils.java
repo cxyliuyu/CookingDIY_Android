@@ -41,9 +41,9 @@ public class DBUtils {
 
     public void clean(String tableName){
 
-        db.execSQL("");
-
-        db.execSQL("delete * from "+tableName);
+        if(tableExist(tableName)){
+            db.execSQL("delete * from CK_USER");
+        }
     }
 //    public List<HashMap<String,String>> query(){
 //

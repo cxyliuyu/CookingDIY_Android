@@ -88,11 +88,11 @@ public class UserBusiness {
     private void saveUser(JSONObject userJSONObject){
 
         //保存用户信息
-
+        DBUtils dbUtils = new DBUtils(context);
 
         //先删除用户表中的所有数据
 
-
+        dbUtils.clean("CK_USER");
 
         Log.i(ValueUtils.LOGTAG,"saveUser");
         //设置是否登录
@@ -103,7 +103,7 @@ public class UserBusiness {
         String trueName = null;
         String userImg = null;
         HashMap<String ,String> userMap = new HashMap<String,String>();
-        DBUtils dbUtils = new DBUtils(context);
+
         try{
             id = userJSONObject.getString("id");
             userName = userJSONObject.getString("username");
