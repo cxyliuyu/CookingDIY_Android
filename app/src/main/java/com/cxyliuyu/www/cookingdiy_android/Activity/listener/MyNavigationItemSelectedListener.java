@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
-import com.cxyliuyu.www.cookingdiy_android.Business.LoginBusiness;
+import com.cxyliuyu.www.cookingdiy_android.Business.UserBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 /**
@@ -32,7 +32,7 @@ public class MyNavigationItemSelectedListener implements OnNavigationItemSelecte
             // Handle the camera action
             Log.i("cookingdiy","个人中心被点击了");
             //判断用户是否登录
-            if(LoginBusiness.isLogin() == false){
+            if(UserBusiness.isLogin(context) == false){
                 //用户未登录，进入登录页面
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);

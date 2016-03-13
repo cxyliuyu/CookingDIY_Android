@@ -7,15 +7,15 @@ import android.widget.Toast;
 
 
 import com.cxyliuyu.www.cookingdiy_android.R;
+import com.cxyliuyu.www.cookingdiy_android.utils.DBUtils;
 import com.cxyliuyu.www.cookingdiy_android.utils.MD5Utils;
 import com.cxyliuyu.www.cookingdiy_android.utils.NetWorkUtils;
 import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
-import com.cxyliuyu.www.cookingdiy_android.utils.URLUtils;
+import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ly on 2016/3/6.
@@ -33,17 +33,17 @@ public class UserBusiness {
     public Boolean login(String username ,String password){
         //登录
 
-        String value = username+password+URLUtils.key;
+        String value = username+password+ ValueUtils.key;
         String md5Value = MD5Utils.string2MD5(value);
         Log.i("COOKINGDIY", value);
         HashMap<String ,String> params = new HashMap<String,String>();
         params.put("username",username);
         params.put("password",password);
         params.put("value", md5Value);
-        Log.i(URLUtils.LOGTAG,md5Value);
+        Log.i(ValueUtils.LOGTAG,md5Value);
 
         //发送post请求
-        JSONObject jsonResult = NetWorkUtils.sendHttpPost(URLUtils.loginURL, params);
+        JSONObject jsonResult = NetWorkUtils.sendHttpPost(ValueUtils.loginURL, params);
         if(jsonResult != null){
             //解析登录返回的信息
             String code = null;
@@ -53,7 +53,9 @@ public class UserBusiness {
                 msg = jsonResult.getString("msg");
                 if(code.equals("200")){
                     //保存用户信息
-
+                    String userJSONString = jsonResult.getString("data");
+                    JSONObject  userJSONObject = new JSONObject(userJSONString);
+                    saveUser(userJSONObject);
                     return true;
                 }else{
                     if(code.equals("201")){
@@ -73,15 +75,53 @@ public class UserBusiness {
         return true;
     }
 
+    public void signOut(){
+        SharedpreferencesUtil.setBoolean(context,"ISLOGIN",false);
+
+    }
+
     public static boolean isLogin(Context context){
-        return SharedpreferencesUtil.getBoolean(context,"ISLOGIN",false);
+        return false;
+        //return SharedpreferencesUtil.getBoolean(context,"ISLOGIN",false);
     }
 
     private void saveUser(JSONObject userJSONObject){
+
         //保存用户信息
 
+
+        //先删除用户表中的所有数据
+
+
+
+        Log.i(ValueUtils.LOGTAG,"saveUser");
         //设置是否登录
         SharedpreferencesUtil.setBoolean(context,"ISLOGIN",true);
+        String id = null;
+        String userName = null;
+        String password = null;
+        String trueName = null;
+        String userImg = null;
+        HashMap<String ,String> userMap = new HashMap<String,String>();
+        DBUtils dbUtils = new DBUtils(context);
+        try{
+            id = userJSONObject.getString("id");
+            userName = userJSONObject.getString("username");
+            password = userJSONObject.getString("password");
+            trueName = userJSONObject.getString("truename");
+            userImg = userJSONObject.getString("userimg");
+
+            userMap.put("id",id);
+            userMap.put("username",userName);
+            userMap.put("password",password);
+            userMap.put("trueName",trueName);
+            userMap.put("userimg",userImg);
+
+            dbUtils.add("CK_USER",userMap);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

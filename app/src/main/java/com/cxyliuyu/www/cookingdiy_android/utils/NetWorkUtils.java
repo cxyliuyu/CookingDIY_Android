@@ -66,7 +66,7 @@ public class NetWorkUtils {
             e.printStackTrace();
         }
         String result = buffer.toString();//返回低字符串
-        Log.i(URLUtils.LOGTAG,"result = "+ result);
+        Log.i(ValueUtils.LOGTAG,"result = "+ result);
         JSONObject josonResult = null;
         try{
             josonResult = new JSONObject(result);
@@ -87,7 +87,7 @@ public class NetWorkUtils {
                 // 网络连接可用
                 return networkInfo.isAvailable();
             } else {
-                Log.e(URLUtils.LOGTAG, "网络连接不可用");
+                Log.e(ValueUtils.LOGTAG, "网络连接不可用");
             }
         }
         return false;
