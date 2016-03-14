@@ -1,17 +1,16 @@
 package com.cxyliuyu.www.cookingdiy_android.Business;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
 
 import com.cxyliuyu.www.cookingdiy_android.R;
-import com.cxyliuyu.www.cookingdiy_android.utils.DBUtils;
-import com.cxyliuyu.www.cookingdiy_android.utils.MD5Utils;
-import com.cxyliuyu.www.cookingdiy_android.utils.NetWorkUtils;
-import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
-import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
+import com.cxyliuyu.www.cookingdiy_android.Utils.DBUtils;
+import com.cxyliuyu.www.cookingdiy_android.Utils.MD5Utils;
+import com.cxyliuyu.www.cookingdiy_android.Utils.NetWorkUtils;
+import com.cxyliuyu.www.cookingdiy_android.Utils.SharedpreferencesUtil;
+import com.cxyliuyu.www.cookingdiy_android.Utils.ValueUtils;
 
 import org.json.JSONObject;
 
