@@ -1,7 +1,6 @@
 package com.cxyliuyu.www.cookingdiy_android.utils;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by ly on 2016/3/10.

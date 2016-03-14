@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import com.cxyliuyu.www.cookingdiy_android.Activity.Listener.LoginOnClickListener;
+import com.cxyliuyu.www.cookingdiy_android.Activity.listener.LoginOnClickListener;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 
