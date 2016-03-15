@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
 import com.cxyliuyu.www.cookingdiy_android.Business.UserBusiness;
+import com.cxyliuyu.www.cookingdiy_android.R;
 
 import java.util.HashMap;
 
@@ -25,12 +26,12 @@ public class LoginAsyncTask extends AsyncTask<Object,Integer,Object>{
         switch (order){
             case "LOGIN":
                 try {
-//                    HashMap<String, String> hashMap = (HashMap<String, String>) params[0];
-//                    String userName = hashMap.get("userName");
-//                    String password = hashMap.get("password");
-//                    UserBusiness userBusiness = new UserBusiness(activity);
-//                    Boolean result = userBusiness.login(userName, password);
-//                    return result;
+                    HashMap<String, String> hashMap = (HashMap<String, String>) params[0];
+                    String userName = hashMap.get("userName");
+                    String password = hashMap.get("password");
+                    UserBusiness userBusiness = new UserBusiness(activity);
+                    Boolean result = userBusiness.login(userName, password);
+                    return result;
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -46,15 +47,15 @@ public class LoginAsyncTask extends AsyncTask<Object,Integer,Object>{
         super.onPostExecute(o);
         switch (order){
             case "LOGIN":
-                //activity.showProgress(false);
+                activity.showProgress(false);
                 try{
-                    //Boolean result = (Boolean)o;
-                    //if(result){
-                    //activity.finish();
-                   // }else {
-                    //activity.mPasswordView.setError(activity.getString(R.string.error_incorrect_password));
-                    //activity.mPasswordView.requestFocus();
-                   // }
+                    Boolean result = (Boolean)o;
+                    if(result){
+                        activity.finish();
+                    }else {
+                        activity.mPasswordView.setError(activity.getString(R.string.error_incorrect_password));
+                        activity.mPasswordView.requestFocus();
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
