@@ -18,10 +18,13 @@ import com.cxyliuyu.www.cookingdiy_android.Activity.listener.MyNavigationItemSel
 public class MainActivity extends AppCompatActivity {
     //主页面
 
+    HomeFragment homeFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        homeFragment = new HomeFragment();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        MyNavigationItemSelectedListener myNavigationItemSelectedListener = new MyNavigationItemSelectedListener(MainActivity.this);
+        MyNavigationItemSelectedListener myNavigationItemSelectedListener = new MyNavigationItemSelectedListener(MainActivity.this,homeFragment);
         navigationView.setNavigationItemSelectedListener(myNavigationItemSelectedListener);
         navigationView.setCheckedItem(R.id.nav_home);
         openFragment();
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openFragment(){
         //打开当前页面的fragment
-        HomeFragment homeFragment = new HomeFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.main_framelayout,homeFragment);
