@@ -1,5 +1,7 @@
 package com.cxyliuyu.www.cookingdiy_android;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.Fragment.HomeFragment;
 import com.cxyliuyu.www.cookingdiy_android.Activity.listener.MyNavigationItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         MyNavigationItemSelectedListener myNavigationItemSelectedListener = new MyNavigationItemSelectedListener(MainActivity.this);
         navigationView.setNavigationItemSelectedListener(myNavigationItemSelectedListener);
-
+        navigationView.setCheckedItem(R.id.nav_home);
+        openFragment();
     }
 
     @Override
@@ -64,5 +68,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void openFragment(){
+        //打开当前页面的fragment
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_framelayout,homeFragment);
+        fragmentTransaction.commit();
     }
 }
