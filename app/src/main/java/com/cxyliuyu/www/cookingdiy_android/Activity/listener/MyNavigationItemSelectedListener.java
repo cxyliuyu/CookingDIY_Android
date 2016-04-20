@@ -112,20 +112,27 @@ public class MyNavigationItemSelectedListener implements OnNavigationItemSelecte
     private void toMeFragment(){
         Log.i(ValueUtils.LOGTAG,"个人导航栏被点击了");
         fragmentTransaction = fragmentManager.beginTransaction();
-        if(UserBusiness.isLogin(activity) == false){
-            //用户未登录，跳转到登录
-            Intent intent = new Intent(activity,LoginActivity.class);
-            activity.startActivity(intent);
+//        if(UserBusiness.isLogin(activity) == false){
+//            //用户未登录，跳转到登录
+//            Intent intent = new Intent(activity,LoginActivity.class);
+//            activity.startActivity(intent);
+//        }else{
+//            //用户已登录，跳转到个人中心
+//            if(meFragment != null){
+//                fragmentTransaction.replace(R.id.main_framelayout,meFragment);
+//            }else{
+//                initHomeFragment();
+//                initObjects();
+//            }
+//            fragmentTransaction.commit();
+//        }
+        if(meFragment != null){
+            fragmentTransaction.replace(R.id.main_framelayout,meFragment);
         }else{
-            //用户已登录，跳转到个人中心
-            if(meFragment != null){
-                fragmentTransaction.replace(R.id.main_framelayout,meFragment);
-            }else{
-                initHomeFragment();
-                initObjects();
-            }
-            fragmentTransaction.commit();
+            initHomeFragment();
+            initObjects();
         }
+        fragmentTransaction.commit();
     }
 
 }
