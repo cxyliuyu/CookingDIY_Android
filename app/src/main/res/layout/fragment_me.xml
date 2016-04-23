@@ -29,7 +29,7 @@
                 android:id="@+id/mefragment_userimg"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@mipmap/userdefaultimg"
+                android:src="@drawable/userdefaultimg"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#777777"
                 android:layout_marginLeft="15dp"
