@@ -1,6 +1,7 @@
 package com.cxyliuyu.www.cookingdiy_android.Business;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -58,9 +59,9 @@ public class UserBusiness {
                     return true;
                 }else{
                     if(code.equals("201")){
-                        Toast.makeText(context,context.getString(R.string.login_user_error),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context,"用户名或密码错误",Toast.LENGTH_LONG).show();
                     }else if(code.equals("202")){
-                        Toast.makeText(context,context.getString(R.string.login_key_error),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context,context.getString(R.string.login_key_error),Toast.LENGTH_LONG).show();
                     }
                     return false;
                 }
@@ -110,18 +111,31 @@ public class UserBusiness {
             trueName = userJSONObject.getString("truename");
             userImg = userJSONObject.getString("userimg");
 
-            userMap.put("id",id);
-            userMap.put("username",userName);
-            userMap.put("password",password);
-            userMap.put("trueName",trueName);
-            userMap.put("userimg",userImg);
+            SharedpreferencesUtil.setString(context,ValueUtils.USERID,id);
+            SharedpreferencesUtil.setString(context,ValueUtils.USERPASSWORD,password);
+            SharedpreferencesUtil.setString(context,ValueUtils.USERNAME,userName);
+            SharedpreferencesUtil.setString(context,ValueUtils.USERIMG,userImg);
+            SharedpreferencesUtil.setString(context,ValueUtils.USERTRUENAME,trueName);
 
-            dbUtils.add("CK_USER",userMap);
+//以下是存数据库的代码，因为比较复杂，放弃这种存储方式
+//            userMap.put("id",id);
+//            userMap.put("username",userName);
+//            userMap.put("password",password);
+//            userMap.put("trueName",trueName);
+//            userMap.put("userimg",userImg);
+//
+//            dbUtils.add("CK_USER",userMap);
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    public void quitLogin(){
+        //退出登录
+        Log.i(ValueUtils.LOGTAG,"退出登录");
+        SharedpreferencesUtil.setBoolean(context,"ISLOGIN",false);
     }
 
 }

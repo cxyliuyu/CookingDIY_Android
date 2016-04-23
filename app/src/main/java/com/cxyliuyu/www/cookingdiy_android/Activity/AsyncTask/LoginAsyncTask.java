@@ -1,5 +1,6 @@
 package com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
@@ -51,6 +52,11 @@ public class LoginAsyncTask extends AsyncTask<Object,Integer,Object>{
                 try{
                     Boolean result = (Boolean)o;
                     if(result){
+                        //发送让meFragment更新页面的广播
+                        Intent intent = new Intent();
+                        intent.setAction("com.cxyliuyu.cookingdiy.refreshmefragment");
+                        activity.sendBroadcast(intent);
+                        //关闭当前登录页面
                         activity.finish();
                     }else {
                         activity.mPasswordView.setError(activity.getString(R.string.error_incorrect_password));
