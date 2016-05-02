@@ -43,7 +43,6 @@ public class NetWorkUtils {
         }
         String stringParams = sb.toString();
 
-
         //发送请求
         try{
             realUrl = new URL(url);
@@ -68,8 +67,8 @@ public class NetWorkUtils {
         }catch(Exception e){
             e.printStackTrace();
         }
-        String result = buffer.toString();//返回低字符串
-        Log.i(ValueUtils.LOGTAG,"result = "+ result);
+        String result = buffer.toString();//返回字符串
+        Log.i(ValueUtils.LOGTAG,"网络请求的返回结果result = "+ result);
         JSONObject josonResult = null;
         try{
             josonResult = new JSONObject(result);
@@ -77,7 +76,6 @@ public class NetWorkUtils {
             e.printStackTrace();
         }
         return josonResult;
-
     }
 
     public static boolean isNetWorkConnected(Context context) {
@@ -95,6 +93,7 @@ public class NetWorkUtils {
         }
         return false;
     }
+
     //利用URL获取网络上的图片
     public static Bitmap getBitmap(String url) {
         URL imageURL = null;
