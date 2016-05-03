@@ -2,11 +2,15 @@ package com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.FoodDetailActivity;
 import com.cxyliuyu.www.cookingdiy_android.Activity.Fragment.HomeFragment;
+import com.cxyliuyu.www.cookingdiy_android.Activity.SearchFoodActivity;
 import com.cxyliuyu.www.cookingdiy_android.Business.FoodBusiness;
 import com.cxyliuyu.www.cookingdiy_android.utils.NetWorkUtils;
+import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
 
 import org.json.JSONObject;
 
@@ -21,6 +25,8 @@ public class FoodAsyncTask extends AsyncTask{
     String order = null;
     Activity activity = null;
     public HomeFragment homeFragment = null;
+    public FoodDetailActivity foodDetailActivity = null;
+    public SearchFoodActivity searchFoodActivity = null;
 
     public FoodAsyncTask(String order,Activity activity){
         this.order = order;
@@ -29,23 +35,36 @@ public class FoodAsyncTask extends AsyncTask{
 
     @Override
     protected Object doInBackground(Object[] params) {
+        HashMap<String,String> hashMap = (HashMap<String,String>)params[0];
+        JSONObject jsonObject = null;
+        FoodBusiness foodBusiness = new FoodBusiness(activity);
         switch (order){
             case "GETFOODS":
                 //获取食物列表
-                HashMap<String,String> hashMap = (HashMap<String,String>)params[0];
                 String pageSize = hashMap.get("pageSize");
                 String pageNum = hashMap.get("pageNum");
-                JSONObject jsonObject = null;
                 if(NetWorkUtils.isNetWorkConnected(activity)){
-                    FoodBusiness foodBusiness = new FoodBusiness(activity);
                     jsonObject = foodBusiness.getFoodsByPage(pageSize,pageNum);
                     return jsonObject;
                 }else{
-                    Toast.makeText(activity,"网络连接不可用，请检查网络",Toast.LENGTH_LONG).show();
+                    return null;
                 }
-                break;
-            case "REGISTER":
-                break;
+            case "GETFOODBYID":
+                String foodId = hashMap.get("foodId");
+                if(NetWorkUtils.isNetWorkConnected(activity)){
+                    jsonObject = foodBusiness.getFoodById(foodId);
+                    return jsonObject;
+                }else{
+                    return null;
+                }
+            case "SEARCHFOODS":
+                String key = hashMap.get("key");
+                if(NetWorkUtils.isNetWorkConnected(activity)){
+                    jsonObject = foodBusiness.searchFoods(key);
+                    return jsonObject;
+                }else{
+                    return null;
+                }
         }
         return null;
     }
@@ -56,10 +75,28 @@ public class FoodAsyncTask extends AsyncTask{
         switch (order){
             case "GETFOODS":
                 //调用HomeFragment页面的刷新页面方法
-                JSONObject jsonObject = (JSONObject)o;
-                homeFragment.refreshView(jsonObject);
-            case "REGISTER":
+                if(o != null){
+                    JSONObject jsonObject = (JSONObject)o;
+                    homeFragment.refreshView(jsonObject);
+                }else {
+                    Toast.makeText(activity, "网络连接不可用，请检查网络", Toast.LENGTH_LONG).show();
+                }
                 break;
+            case "GETFOODBYID":
+                if(o != null){
+                    JSONObject jsonObject = (JSONObject)o;
+                    foodDetailActivity.refreshView(jsonObject);
+                }else {
+                    Toast.makeText(activity, "网络连接不可用，请检查网络", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case "SEARCHFOODS":
+                if(o != null){
+                    JSONObject jsonObject = (JSONObject)o;
+                    searchFoodActivity.refreshView(jsonObject);
+                }else{
+                    Toast.makeText(activity, "网络连接不可用，请检查网络", Toast.LENGTH_LONG).show();
+                }
         }
     }
 

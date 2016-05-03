@@ -1,6 +1,7 @@
 package com.cxyliuyu.www.cookingdiy_android.utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.FoodDetailActivity;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class FoodListviewAdapter extends BaseAdapter{
         try{
             LayoutInflater inflater = activity.getLayoutInflater();
             HashMap<String,String> hashMap = list.get(position);
-            String foodId = hashMap.get("foodId");
+            final String foodId = hashMap.get("foodId");
             String foodName = hashMap.get("foodName");
             String foodImg = hashMap.get("foodImg");
             String content = hashMap.get("content");
@@ -62,11 +64,19 @@ public class FoodListviewAdapter extends BaseAdapter{
             SetImageViewUtil.setImageToImageView(listItemFoodImage,foodImg);
             listItemFoodContent.setText(content);
             listItemFoodName.setText(foodName);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Log.i(ValueUtils.LOGTAG, "食物id是"+foodId);
+                    Intent intent = new Intent(activity, FoodDetailActivity.class);
+                    intent.putExtra("foodId",foodId);
+                    activity.startActivity(intent);
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
         }
 
         return itemView;
     }
-
 }

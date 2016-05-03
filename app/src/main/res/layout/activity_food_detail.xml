@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/backgray"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/fooddetail_toobar"
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fooddetail_scrollview">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:id="@+id/fooddetail_foodimg"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="5dp"
+                    android:id="@+id/fooddetail_foodnametextview"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/LightSlateGray"
+                    android:id="@+id/fooddtetail_foodcontenttextview" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/win8_green"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="食材清单"
+                />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/fooddetail_listlistview"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/win8_green"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="做法步骤"
+                />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:id="@+id/fooddetail_steplistview"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

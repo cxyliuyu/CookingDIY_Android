@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/backgray"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/fooddetail_toobar"
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/searchicon"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:id="@+id/searchactivity_searchEdit"
+
+            android:layout_weight="5"/>
+        <Button
+            android:id="@+id/searchactivity_searchbutton"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+
+            android:layout_marginBottom="10dp"
+            android:text="搜索"
+            android:background="@color/LimeGreen"
+            android:textColor="@color/LightYellow"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchactivity_resultlistview">
+    </ListView>
+</LinearLayout>

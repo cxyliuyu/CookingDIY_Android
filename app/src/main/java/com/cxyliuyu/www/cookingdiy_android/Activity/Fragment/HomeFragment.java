@@ -3,6 +3,7 @@ package com.cxyliuyu.www.cookingdiy_android.Activity.Fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.FoodAsyncTask;
+import com.cxyliuyu.www.cookingdiy_android.Activity.SearchFoodActivity;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodListviewAdapter;
 
@@ -40,6 +42,7 @@ public class HomeFragment extends Fragment {
         FoodAsyncTask foodAsyncTask = new FoodAsyncTask("GETFOODS",activity);
         foodAsyncTask.homeFragment = this;
         foodAsyncTask.execute(hashMap);
+
         return rootView;
     }
     public void refreshView(JSONObject jsonObject){
@@ -72,6 +75,13 @@ public class HomeFragment extends Fragment {
         }catch (Exception e){
             e.printStackTrace();
         }
+        toSearchImg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, SearchFoodActivity.class);
+                activity.startActivity(intent);
+            }
+        });
 
     }
 }
