@@ -6,7 +6,7 @@
         <item android:id="@+id/nav_home" android:icon="@mipmap/nav_home"
             android:title="首页" />
         <item android:id="@+id/nav_time" android:icon="@mipmap/nav_time"
-            android:title="记时" />
+            android:title="计时" />
         <item android:id="@+id/nav_message" android:icon="@mipmap/nav_message"
             android:title="消息" />
         <item android:id="@+id/nav_me" android:icon="@mipmap/nav_personal"

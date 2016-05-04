@@ -1,11 +1,158 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cxyliuyu.www.cookingdiy_android.Activity.Fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="left|top">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/holo_green_light"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/timefragment_showtimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:textSize="80dp"
+                    android:textColor="@color/Azure"
+                    android:text="00:00"/>
+
+                <LinearLayout
+                    android:id="@+id/timefragment_seektimelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/Azure"
+                        android:textSize="25dp"
+                        android:text="计时时间（分钟）"/>
+                    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                        android:id="@+id/timefragment_seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="20dp"
+                        app:dsb_min="1"
+                        app:dsb_max="60"
+                        app:dsb_value="30"
+                        app:dsb_progressColor="@color/Azure"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/timefragment_pauselayout"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/timefragment_pausebutton"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/pause"
+                        android:layout_gravity="center"
+                        app:cb_color="@color/white"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        app:cb_pressedRingWidth="8dip" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="25dp"
+                        android:textColor="@color/win8_green"
+                        android:text="暂停"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/timefragment_stoplayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/timefragment_stopbutton"
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        android:src="@drawable/stop"
+                        app:cb_color="@color/white"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:scaleType="fitXY"
+                        app:cb_pressedRingWidth="8dip" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="25dp"
+                        android:textColor="@color/win8_green"
+                        android:text="取消"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/timefragment_startlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/timefragment_startbutton"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                       android:src="@drawable/start"
+                        app:cb_color="@color/white"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:layout_gravity="center"
+                        app:cb_pressedRingWidth="8dip" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="25dp"
+                        android:textColor="@color/win8_green"
+                        android:text="开始"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>
 
