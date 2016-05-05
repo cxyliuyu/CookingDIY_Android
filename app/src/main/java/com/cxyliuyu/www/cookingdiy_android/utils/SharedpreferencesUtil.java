@@ -21,13 +21,24 @@ public class SharedpreferencesUtil {
     }
     public static Boolean getBoolean(Context context,String key,Boolean defaultValue){
         SharedPreferences sharedPreferences = context.getSharedPreferences("COOKINGDIY",Context.MODE_PRIVATE);
-        Boolean value = sharedPreferences.getBoolean(key,defaultValue);
+        Boolean value = sharedPreferences.getBoolean(key, defaultValue);
         return value;
     }
     public static void setBoolean(Context context,String key,Boolean value){
         SharedPreferences sharedPreferences = context.getSharedPreferences("COOKINGDIY",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key,value);
+        editor.commit();
+    }
+    public static int getInt(Context context,String key,int defaultValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("COOKINGDIY",Context.MODE_PRIVATE);
+        int value = sharedPreferences.getInt(key,defaultValue);
+        return value;
+    }
+    public static void setInt(Context context,String key,int value){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("COOKINGDIY",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
         editor.commit();
     }
 

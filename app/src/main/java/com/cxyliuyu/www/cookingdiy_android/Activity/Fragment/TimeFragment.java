@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cxyliuyu.www.cookingdiy_android.R;
+import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
 import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -39,7 +40,15 @@ public class TimeFragment extends Fragment{
     Timer timer = null;
 
     int minute = 0;
-    int second = 0;
+    int currentSecond = 0;
+
+    Boolean isStart = false;
+    Boolean isPause = false;//是否暂停
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,10 +73,15 @@ public class TimeFragment extends Fragment{
                 //Log.i(ValueUtils.LOGTAG, "时间选择器被修改了，值 = " + value);
                 //监听选择器值得变化
                 minute = value;
-                second = minute * 60;
                 return value;
             }
         });
+        if(isStart == true){
+            startLayout.setVisibility(View.GONE);
+            stopLayout.setVisibility(View.VISIBLE);
+            showTimeTextView.setVisibility(View.VISIBLE);
+            seekTimeLayout.setVisibility(View.GONE);
+        }
         return rootView;
     }
     class TimeFragmentOnClickListener implements View.OnClickListener {
@@ -92,31 +106,34 @@ public class TimeFragment extends Fragment{
         @Override
         public void handleMessage(Message msg) {
             //接收到timer发送的信号后，更新UI
-            String timeString = "";
-            int curentMinute = second / 60;
-            if(curentMinute < 10){
-                timeString = timeString +"0"+curentMinute+":";
-            }else{
-                timeString = timeString +curentMinute +":";
+            if(isPause == false){
+                int second = msg.arg1;
+                currentSecond = second;
+                String timeString = "";
+                int curentMinute = second / 60;
+                if(curentMinute < 10){
+                    timeString = timeString +"0"+curentMinute+":";
+                }else{
+                    timeString = timeString +curentMinute +":";
+                }
+                int currentSecond =  second % 60;
+                if(currentSecond < 10){
+                    timeString = timeString + "0"+currentSecond;
+                }else{
+                    timeString = timeString + currentSecond;
+                }
+                Log.i(ValueUtils.LOGTAG,timeString);
+                showTimeTextView.setText(timeString);
+                if(second == 0){
+                    //倒计时结束
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("时间到啦!")
+                            .setContentText("注意掌握火候哦!")
+                            .show();
+                    stopTime();
+                }
+                Log.i(ValueUtils.LOGTAG,"second = "+second);
             }
-            int currentSecond =  second % 60;
-            if(currentSecond < 10){
-                timeString = timeString + "0"+currentSecond;
-            }else{
-                timeString = timeString + currentSecond;
-            }
-            Log.i(ValueUtils.LOGTAG,timeString);
-            showTimeTextView.setText(timeString);
-            if(second == 0){
-                //倒计时结束
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("时间到啦!")
-                        .setContentText("注意掌握火候哦!")
-                        .show();
-                stopTime();
-            }
-            second--;
-            Log.i(ValueUtils.LOGTAG,"second = "+second);
         }
     };
     private void startTime(){
@@ -127,15 +144,18 @@ public class TimeFragment extends Fragment{
         seekTimeLayout.setVisibility(View.GONE);
         showTimeTextView.setVisibility(View.VISIBLE);
         timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //Log.i(ValueUtils.LOGTAG, "哈哈哈");
-                Message message = new Message();
-                handler.sendMessage(message);
-            }
-        },0,1000);
-
+        if(isPause ==true){
+            //暂停状态下启动
+            isPause = false;
+            int currentSecond = SharedpreferencesUtil.getInt(getActivity(),"currentSecond",0);
+            TimerTask timerTask = new TimeTimerTask(currentSecond);
+            timer.schedule(timerTask,0,1000);
+        }else{
+            //正常启动
+            TimerTask timerTask = new TimeTimerTask(minute * 60);
+            timer.schedule(timerTask,0,1000);
+            isStart = true;
+        }
     }
     private void stopTime(){
         //停止计时
@@ -145,7 +165,6 @@ public class TimeFragment extends Fragment{
         seekTimeLayout.setVisibility(View.VISIBLE);
         showTimeTextView.setVisibility(View.GONE);
         showTimeTextView.setText("00:00");
-        second = minute * 60;
         timer.cancel();
     }
     private void pauseTime(){
@@ -153,6 +172,24 @@ public class TimeFragment extends Fragment{
         stopLayout.setVisibility(View.GONE);
         startLayout.setVisibility(View.VISIBLE);
         pauseButton.setEnabled(false);
+        isPause = true;
+        SharedpreferencesUtil.setInt(getActivity(),"currentSecond",currentSecond);
         timer.cancel();
+    }
+    class TimeTimerTask extends TimerTask{
+
+        int second;
+        public TimeTimerTask(int second){
+            this.second = second;
+        }
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.arg1 = second;
+            if(second!=0){
+                second --;
+            }
+            handler.sendMessage(message);
+        }
     }
 }
