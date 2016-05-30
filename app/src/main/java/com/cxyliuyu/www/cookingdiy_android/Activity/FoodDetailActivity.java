@@ -1,32 +1,36 @@
 package com.cxyliuyu.www.cookingdiy_android.Activity;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.FoodAsyncTask;
+import com.cxyliuyu.www.cookingdiy_android.Business.FoodBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodListListviewAdapter;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodStepListViewAdapter;
 import com.cxyliuyu.www.cookingdiy_android.utils.SetImageViewUtil;
+import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
 import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Map;
+
 
 public class FoodDetailActivity extends AppCompatActivity {
 
@@ -35,6 +39,10 @@ public class FoodDetailActivity extends AppCompatActivity {
     TextView foodContentTextView = null;
     ListView foodlistListView = null;
     ListView foodstepListView = null;
+    LinearLayout saveLinearLayout = null;
+    LinearLayout commentLinearLayout = null;
+    ImageView saveImageView = null;
+    ImageView commentImageView = null;
 
     String foodId = null;
     @Override
@@ -56,6 +64,10 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodContentTextView = (TextView)findViewById(R.id.fooddtetail_foodcontenttextview);
         foodlistListView = (ListView)findViewById(R.id.fooddetail_listlistview);
         foodstepListView = (ListView)findViewById(R.id.fooddetail_steplistview);
+        saveLinearLayout = (LinearLayout)findViewById(R.id.fooddetail_saveLinearLayout);
+        saveImageView = (ImageView)findViewById(R.id.fooddetail_saveImageView);
+        commentLinearLayout = (LinearLayout)findViewById(R.id.fooddetail_commentLinearLayout);
+        commentImageView = (ImageView)findViewById(R.id.fooddetail_commentImageView);
 
         foodId = getIntent().getStringExtra("foodId");
         FoodAsyncTask foodAsyncTask = new FoodAsyncTask("GETFOODBYID",FoodDetailActivity.this);
@@ -64,6 +76,9 @@ public class FoodDetailActivity extends AppCompatActivity {
         params.put("foodId",foodId);
         foodAsyncTask.execute(params);
 
+        //初始化是否已经收藏本菜谱
+        FoodBusiness foodBusiness = new FoodBusiness(FoodDetailActivity.this);
+        foodBusiness.initSave(saveImageView,foodId);
 
     }
 
@@ -88,22 +103,6 @@ public class FoodDetailActivity extends AppCompatActivity {
                 foodstepListView.setAdapter(foodStepListViewAdapter);
                 setListViewHeightBasedOnChildren(foodlistListView);
                 setListViewHeightBasedOnChildren(foodstepListView);
-//                final Handler myHandler = new Handler() {
-//                    public void handleMessage(Message msg) {
-//                        setListViewHeightBasedOnChildren(foodstepListView);
-//                        super.handleMessage(msg);
-//                    }
-//                };
-//
-//                class MyTimerTask1 extends TimerTask {
-//                    public void run() {
-//                        Message message = new Message();
-//                        myHandler.sendMessage(message);
-//                    }
-//                }
-//                Timer timer = new Timer();
-//                timer.schedule(new MyTimerTask1(), 3000);// 两秒后启动任务
-
             }
         }catch (Exception e){
             e.printStackTrace();
