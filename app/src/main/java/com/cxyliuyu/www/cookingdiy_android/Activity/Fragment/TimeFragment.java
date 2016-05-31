@@ -44,10 +44,12 @@ public class TimeFragment extends Fragment{
 
     Boolean isStart = false;
     Boolean isPause = false;//是否暂停
+    Boolean isOnScreen = false;
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isOnScreen = false;
     }
 
     @Override
@@ -82,6 +84,7 @@ public class TimeFragment extends Fragment{
             showTimeTextView.setVisibility(View.VISIBLE);
             seekTimeLayout.setVisibility(View.GONE);
         }
+        isOnScreen = true;
         return rootView;
     }
     class TimeFragmentOnClickListener implements View.OnClickListener {
@@ -124,7 +127,7 @@ public class TimeFragment extends Fragment{
                 }
                 Log.i(ValueUtils.LOGTAG,timeString);
                 showTimeTextView.setText(timeString);
-                if(second == 0){
+                if(second == 0 && isOnScreen ==true){
                     //倒计时结束
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("时间到啦!")

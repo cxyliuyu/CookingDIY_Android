@@ -17,4 +17,5 @@ public class ValueUtils {
     public static String GETFOODBYPAGE = "http://114.215.135.70/lypublic/1/index.php/CaiApi/Food/getFoodsByPage";
     public static String GETFOODBYID = "http://114.215.135.70/lypublic/1/index.php/CaiApi/Food/getFoodById";
     public static String SEARCHFOODS = "http://114.215.135.70/lypublic/1/index.php/CaiApi/Food/searchFood";
+    public static String ISSAVED = "http://114.215.135.70/lypublic/1/index.php/CaiApi/Save/isSaved";
 }

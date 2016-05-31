@@ -117,15 +117,6 @@ public class UserBusiness {
             SharedpreferencesUtil.setString(context,ValueUtils.USERIMG,userImg);
             SharedpreferencesUtil.setString(context,ValueUtils.USERTRUENAME,trueName);
 
-//以下是存数据库的代码，因为比较复杂，放弃这种存储方式
-//            userMap.put("id",id);
-//            userMap.put("username",userName);
-//            userMap.put("password",password);
-//            userMap.put("trueName",trueName);
-//            userMap.put("userimg",userImg);
-//
-//            dbUtils.add("CK_USER",userMap);
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -135,7 +126,8 @@ public class UserBusiness {
     public void quitLogin(){
         //退出登录
         Log.i(ValueUtils.LOGTAG,"退出登录");
-        SharedpreferencesUtil.setBoolean(context,"ISLOGIN",false);
+        SharedpreferencesUtil.setBoolean(context, "ISLOGIN", false);
+        SharedpreferencesUtil.setString(context,ValueUtils.USERID,"");
     }
 
 }

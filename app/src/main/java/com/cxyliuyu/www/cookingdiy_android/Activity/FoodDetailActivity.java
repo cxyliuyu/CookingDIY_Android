@@ -2,7 +2,6 @@ package com.cxyliuyu.www.cookingdiy_android.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,25 +10,17 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.FoodAsyncTask;
+import com.cxyliuyu.www.cookingdiy_android.Activity.listener.FoodDetailOnClickListener;
 import com.cxyliuyu.www.cookingdiy_android.Business.FoodBusiness;
+import com.cxyliuyu.www.cookingdiy_android.MyApplication;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodListListviewAdapter;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodStepListViewAdapter;
 import com.cxyliuyu.www.cookingdiy_android.utils.SetImageViewUtil;
-import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
-import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class FoodDetailActivity extends AppCompatActivity {
@@ -43,7 +34,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     LinearLayout commentLinearLayout = null;
     ImageView saveImageView = null;
     ImageView commentImageView = null;
-
+    public Boolean isSaved = false;//当前食谱是否保存
     String foodId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +69,10 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         //初始化是否已经收藏本菜谱
         FoodBusiness foodBusiness = new FoodBusiness(FoodDetailActivity.this);
-        foodBusiness.initSave(saveImageView,foodId);
+        foodBusiness.initSave(saveImageView,foodId,FoodDetailActivity.this);
+        FoodDetailOnClickListener foodDetailOnClickListener = new FoodDetailOnClickListener(FoodDetailActivity.this,saveImageView,commentImageView);
+        saveLinearLayout.setOnClickListener(foodDetailOnClickListener);
+        commentLinearLayout.setOnClickListener(foodDetailOnClickListener);
 
     }
 
@@ -122,5 +116,18 @@ public class FoodDetailActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight+(listView.getDividerHeight()*(adapter.getCount()));
         listView.setLayoutParams(params);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FoodBusiness foodBusiness = new FoodBusiness(FoodDetailActivity.this);
+        foodBusiness.initSave(saveImageView, foodId, FoodDetailActivity.this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyApplication.getVolleyRequestQueue().cancelAll("FOODDETAIL");
     }
 }

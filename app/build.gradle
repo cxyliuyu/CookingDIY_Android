@@ -29,4 +29,5 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'//Alert
     compile 'com.github.markushi:circlebutton:1.1'//圆形按钮
     compile 'org.adw.library:discrete-seekbar:1.0.1'//时间的seekBar
+    compile 'com.mcxiaoke.volley:library:1.0.19'//volley框架
 }

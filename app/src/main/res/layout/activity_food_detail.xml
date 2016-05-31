@@ -46,7 +46,59 @@
                     android:textColor="@color/LightSlateGray"
                     android:id="@+id/fooddtetail_foodcontenttextview" />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <LinearLayout
+                    android:id="@+id/fooddetail_saveLinearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/fooddetail_saveImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/shoucang_n"
+                        android:layout_weight="2"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="收藏"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:textSize="24dp"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/fooddetail_commentLinearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/fooddetail_commentImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/message_n"
+                        android:layout_weight="2"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="评论"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:textSize="24dp"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

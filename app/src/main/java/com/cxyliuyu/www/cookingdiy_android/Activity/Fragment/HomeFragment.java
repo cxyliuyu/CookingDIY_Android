@@ -2,25 +2,25 @@ package com.cxyliuyu.www.cookingdiy_android.Activity.Fragment;
 
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
+        import android.app.Fragment;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.ListView;
 
-import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.FoodAsyncTask;
-import com.cxyliuyu.www.cookingdiy_android.Activity.SearchFoodActivity;
-import com.cxyliuyu.www.cookingdiy_android.R;
-import com.cxyliuyu.www.cookingdiy_android.utils.FoodListviewAdapter;
+        import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.FoodAsyncTask;
+        import com.cxyliuyu.www.cookingdiy_android.Activity.SearchFoodActivity;
+        import com.cxyliuyu.www.cookingdiy_android.R;
+        import com.cxyliuyu.www.cookingdiy_android.utils.FoodListviewAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+        import org.json.JSONArray;
+        import org.json.JSONObject;
+        import java.util.ArrayList;
+        import java.util.HashMap;
+        import java.util.List;
 
 
 public class HomeFragment extends Fragment {
