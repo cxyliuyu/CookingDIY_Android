@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.FoodListActivity;
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
 import com.cxyliuyu.www.cookingdiy_android.Business.UserBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
@@ -29,6 +30,7 @@ public class MeFragmentOnClickListener implements View.OnClickListener{
                 case R.id.mefragment_userall:
                     break;
                 case R.id.mefragment_mysave:
+                    toMySave(activity);
                     break;
                 case R.id.mefragment_upload:
                     break;
@@ -65,6 +67,11 @@ public class MeFragmentOnClickListener implements View.OnClickListener{
     }
     private void toLogin(){
         Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+    }
+    private void toMySave(Activity activity){
+        Intent intent = new Intent(activity, FoodListActivity.class);
+        intent.putExtra("title","我的收藏");
         activity.startActivity(intent);
     }
 }

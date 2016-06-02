@@ -35,7 +35,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     ImageView saveImageView = null;
     ImageView commentImageView = null;
     public Boolean isSaved = false;//当前食谱是否保存
-    String foodId = null;
+    public String foodId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +103,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         }
     }
     private void setListViewHeightBasedOnChildren(ListView listView){
+        //设置listView 的item高度
         ListAdapter adapter = listView.getAdapter();
         if(adapter == null){
             return;

@@ -9,11 +9,7 @@ import com.android.volley.VolleyError;
  * Created by ly on 2016/6/1.
  */
 public abstract class VolleyListener {
-    private Context context;
 
-    public VolleyListener(Context context){
-        this.context = context;
-    }
     //请求成功的回调函数
     public abstract void onMySuccess(String result);
     //请求错误的回调函数

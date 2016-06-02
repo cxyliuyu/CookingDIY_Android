@@ -7,7 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.cxyliuyu.www.cookingdiy_android.MyApplication;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -15,15 +14,13 @@ import java.util.Map;
  */
 public class VolleyRequest {
 
-    public static Context context;
-
-    public static void RequestGet(Context context,String url,String tag,VolleyListener volleyListener){
+    public static void requestGet(Context context,String url,String tag,VolleyListener volleyListener){
         StringRequest stringRequest = new StringRequest(Request.Method.GET,url,volleyListener.responseListener(),
                 volleyListener.errorListener());
         stringRequest.setTag(tag);
         MyApplication.getVolleyRequestQueue().add(stringRequest);
     }
-    public static void RequestPost(Context context,String url,String tag,VolleyListener volleyListener,final Map<String,String>map){
+    public static void requestPost(Context context,String url,String tag,VolleyListener volleyListener,final Map<String,String>map){
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
                 volleyListener.responseListener(),volleyListener.errorListener()){
             @Override
@@ -31,5 +28,6 @@ public class VolleyRequest {
                 return map;
             }
         };
+        MyApplication.getVolleyRequestQueue().add(stringRequest);
     }
 }

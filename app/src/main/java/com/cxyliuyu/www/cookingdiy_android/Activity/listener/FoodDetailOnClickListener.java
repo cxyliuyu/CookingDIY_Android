@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.FoodDetailActivity;
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
+import com.cxyliuyu.www.cookingdiy_android.Business.FoodBusiness;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.SharedpreferencesUtil;
 import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
@@ -80,11 +81,17 @@ public class FoodDetailOnClickListener implements View.OnClickListener{
                     .show();
 
         }else if(islogin == true){
-            if(activity.isSaved == true){
-                //取消收藏
-            }else if(activity.isSaved == false){
-                //添加收藏
+            if(activity.isSaved != null&&activity.foodId != null){
+                FoodBusiness foodBusiness = new FoodBusiness(activity);
+                if(activity.isSaved == true){
+                    //取消收藏
+                    foodBusiness.deleteSava(activity.foodId,activity,saveImageView);
+                }else if(activity.isSaved == false){
+                    //添加收藏
+                    foodBusiness.addSave(activity.foodId,activity,saveImageView);
+                }
             }
+
         }
 
     }
