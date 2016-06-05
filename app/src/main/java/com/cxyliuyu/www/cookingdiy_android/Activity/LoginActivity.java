@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.listener.LoginOnClickListener;
@@ -33,9 +35,18 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mUserNameView = (AutoCompleteTextView) findViewById(R.id.login_username);
 
+        ImageView backimg = (ImageView)findViewById(R.id.toolbar_back);
+        backimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.this.finish();
+            }
+        });
+        TextView toobarTitleTextView = (TextView)findViewById(R.id.toolbar_title);
+        toobarTitleTextView.setText("详情");
+
+        mUserNameView = (AutoCompleteTextView) findViewById(R.id.login_username);
         mPasswordView = (EditText) findViewById(R.id.login_password);
 
 

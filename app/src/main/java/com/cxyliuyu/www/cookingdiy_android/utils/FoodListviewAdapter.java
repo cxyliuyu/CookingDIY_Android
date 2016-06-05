@@ -13,7 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.cxyliuyu.www.cookingdiy_android.Activity.FoodDetailActivity;
+import com.cxyliuyu.www.cookingdiy_android.MyApplication;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 import java.util.ArrayList;
@@ -61,9 +63,15 @@ public class FoodListviewAdapter extends BaseAdapter{
             ImageView listItemFoodImage = (ImageView)itemView.findViewById(R.id.food_listitem_foodimg);
             TextView listItemFoodName = (TextView)itemView.findViewById(R.id.food_listitem_foodname);
             TextView listItemFoodContent = (TextView)itemView.findViewById(R.id.food_listitem_foodcontent);
-            SetImageViewUtil.setImageToImageView(listItemFoodImage,foodImg);
+            //SetImageViewUtil.setImageToImageView(listItemFoodImage,foodImg);
             listItemFoodContent.setText(content);
             listItemFoodName.setText(foodName);
+            //设置图片
+            ImageLoader loader = new ImageLoader(MyApplication.getVolleyRequestQueue(),new BitmapCache());
+            ImageLoader.ImageListener listener = ImageLoader
+                    .getImageListener(listItemFoodImage,R.drawable.food_default,R.drawable.food_default);
+            loader.get(foodImg,listener);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

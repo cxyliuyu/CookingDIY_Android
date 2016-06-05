@@ -30,8 +30,6 @@ dependencies {
     compile 'com.github.markushi:circlebutton:1.1'//圆形按钮
     compile 'org.adw.library:discrete-seekbar:1.0.1'//时间的seekBar
     compile 'com.mcxiaoke.volley:library:1.0.19'//volley框架
-
-    //以下三个是下拉刷新组件
-    compile 'com.sch.rfview:AnimRefreshRecyclerView:1.0.6@aar'
+    compile 'com.baoyz.pullrefreshlayout:library:1.2.0'//下拉刷新
 
 }

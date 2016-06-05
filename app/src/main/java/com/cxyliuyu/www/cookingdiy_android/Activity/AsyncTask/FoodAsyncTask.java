@@ -19,8 +19,13 @@ import java.util.HashMap;
 
 /**
  * Created by ly on 2016/5/1.
+ *
+ * 因为转用volley框架进行网络访问，本类不再使用。
  */
+
 public class FoodAsyncTask extends AsyncTask{
+
+    //不再使用的类
 
     String order = null;
     Activity activity = null;
@@ -44,7 +49,7 @@ public class FoodAsyncTask extends AsyncTask{
                 String pageSize = hashMap.get("pageSize");
                 String pageNum = hashMap.get("pageNum");
                 if(NetWorkUtils.isNetWorkConnected(activity)){
-                    jsonObject = foodBusiness.getFoodsByPage(pageSize,pageNum);
+                    //jsonObject = foodBusiness.getFoodsByPage(pageSize,pageNum);
                     return jsonObject;
                 }else{
                     return null;
@@ -77,7 +82,7 @@ public class FoodAsyncTask extends AsyncTask{
                 //调用HomeFragment页面的刷新页面方法
                 if(o != null){
                     JSONObject jsonObject = (JSONObject)o;
-                    homeFragment.refreshView(jsonObject);
+                    //homeFragment.refreshView(jsonObject);
                 }else {
                     Toast.makeText(activity, "网络连接不可用，请检查网络", Toast.LENGTH_LONG).show();
                 }

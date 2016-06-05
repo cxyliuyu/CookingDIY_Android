@@ -21,4 +21,6 @@ public class ValueUtils {
     public static String ISSAVED = SERVER + "/CaiApi/Save/isSaved";
     public static String DELETESAVE = SERVER + "/CaiApi/Save/deleteSave";
     public static String ADDSAVE = SERVER + "/CaiApi/Save/addSave";
+    public static String GETSAVEBYPAGE = SERVER + "/CaiApi/Save/getSaveByUserIdAndPage";
+
 }

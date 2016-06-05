@@ -208,5 +208,6 @@
     <color name="YellowGreen">#9ACD32</color>
     <!-- z -->
     <color name="backgray">#ecf0f1</color>
+    <color name="ShowMoreGray">#e9e9eb</color>
 
 </resources>

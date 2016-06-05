@@ -17,6 +17,7 @@ import com.cxyliuyu.www.cookingdiy_android.MyApplication;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodListListviewAdapter;
 import com.cxyliuyu.www.cookingdiy_android.utils.FoodStepListViewAdapter;
+import com.cxyliuyu.www.cookingdiy_android.utils.ListViewUtils;
 import com.cxyliuyu.www.cookingdiy_android.utils.SetImageViewUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -95,28 +96,12 @@ public class FoodDetailActivity extends AppCompatActivity {
                 FoodStepListViewAdapter foodStepListViewAdapter = new FoodStepListViewAdapter(foodStepArray,FoodDetailActivity.this);
                 foodlistListView.setAdapter(foodListListviewAdapter);
                 foodstepListView.setAdapter(foodStepListViewAdapter);
-                setListViewHeightBasedOnChildren(foodlistListView);
-                setListViewHeightBasedOnChildren(foodstepListView);
+                ListViewUtils.setListViewHeightBasedOnChildren(foodlistListView, FoodDetailActivity.this);
+                ListViewUtils.setListViewHeightBasedOnChildren(foodstepListView,FoodDetailActivity.this);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-    private void setListViewHeightBasedOnChildren(ListView listView){
-        //设置listView 的item高度
-        ListAdapter adapter = listView.getAdapter();
-        if(adapter == null){
-            return;
-        }
-        int totalHeight = 0;
-        for(int i=0;i<adapter.getCount();i++){
-            View listItem = adapter.getView(i,null,listView);
-            listItem.measure(View.MeasureSpec.makeMeasureSpec(getResources().getDisplayMetrics().widthPixels, View.MeasureSpec.EXACTLY), 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight+(listView.getDividerHeight()*(adapter.getCount()));
-        listView.setLayoutParams(params);
     }
 
     @Override

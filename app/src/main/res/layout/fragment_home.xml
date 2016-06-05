@@ -5,49 +5,46 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:background="@color/backgray"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <com.baoyz.widget.PullRefreshLayout
+            android:id="@+id/homefragment_pullrefreshlayout"
             android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:background="@color/backgray"
-            android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout">
-            <ImageView
+            android:layout_height="match_parent">
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/homefragment_search"
-                android:src="@drawable/searchimg"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:textSize="14dp"-->
-                <!--android:text="今日推荐"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:textColor="@color/win8_green"/>-->
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/homefragment_foodlistview"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </LinearLayout>
-
-
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/homefragment_search"
+                        android:src="@drawable/searchimg"/>
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/homefragment_foodlistview"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                    <TextView
+                        android:id="@+id/foodlist_showmore"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/ShowMoreGray"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="点击加载更多"/>
+                </LinearLayout>
+            </ScrollView>
+        </com.baoyz.widget.PullRefreshLayout>
     </RelativeLayout>
 
 

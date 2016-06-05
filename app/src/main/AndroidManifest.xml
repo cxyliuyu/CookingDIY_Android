@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name=".Activity.LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".Activity.FoodDetailActivity"
@@ -45,8 +46,13 @@
         </activity>
         <activity
             android:name=".Activity.FoodListActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

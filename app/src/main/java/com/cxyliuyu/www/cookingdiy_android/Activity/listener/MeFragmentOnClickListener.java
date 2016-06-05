@@ -72,6 +72,7 @@ public class MeFragmentOnClickListener implements View.OnClickListener{
     private void toMySave(Activity activity){
         Intent intent = new Intent(activity, FoodListActivity.class);
         intent.putExtra("title","我的收藏");
+        intent.putExtra("action","SHOWSAVE");
         activity.startActivity(intent);
     }
 }
