@@ -51,9 +51,11 @@ public class LoginActivity extends AppCompatActivity  {
 
 
         Button mUserSignInButton = (Button) findViewById(R.id.sign_in_button);
+        Button toRegisterButton = (Button) findViewById(R.id.register_button);
 
         LoginOnClickListener loginOnClickListener = new LoginOnClickListener(LoginActivity.this);
         mUserSignInButton.setOnClickListener(loginOnClickListener);
+        toRegisterButton.setOnClickListener(loginOnClickListener);
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);

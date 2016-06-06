@@ -1,6 +1,7 @@
 package com.cxyliuyu.www.cookingdiy_android.Activity.listener;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import com.cxyliuyu.www.cookingdiy_android.Activity.AsyncTask.LoginAsyncTask;
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
+import com.cxyliuyu.www.cookingdiy_android.Activity.RegisterActivity;
 import com.cxyliuyu.www.cookingdiy_android.R;
 
 import java.util.HashMap;
@@ -41,7 +43,8 @@ public class LoginOnClickListener implements OnClickListener {
                 loginAsyncTask.execute(hashMap);
                 break;
             case R.id.register_button:
-
+                Intent intent = new Intent(activity, RegisterActivity.class);
+                activity.startActivity(intent);
                 break;
         }
     }
