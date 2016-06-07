@@ -40,7 +40,7 @@ public class FoodDetailOnClickListener implements View.OnClickListener{
                 saveFood();
                 break;
             case R.id.fooddetail_commentLinearLayout:
-
+                toComment();
                 break;
             default:
 
@@ -49,7 +49,6 @@ public class FoodDetailOnClickListener implements View.OnClickListener{
 
     private void saveFood(){
         //收藏按钮被点击的事件
-
         //收藏按钮被点击的业务
         Boolean islogin = SharedpreferencesUtil.getBoolean(activity, ValueUtils.ISLOGIN, false);
         if(islogin == false){
@@ -75,7 +74,6 @@ public class FoodDetailOnClickListener implements View.OnClickListener{
                             Log.i(ValueUtils.LOGTAG,"alert确定按钮被点击");
                             Intent intent = new Intent(activity, LoginActivity.class);
                             activity.startActivity(intent);
-
                         }
                     })
                     .show();
@@ -91,8 +89,42 @@ public class FoodDetailOnClickListener implements View.OnClickListener{
                     foodBusiness.addSave(activity.foodId,activity,saveImageView);
                 }
             }
-
         }
+    }
 
+    private void toComment(){
+        Boolean islogin = SharedpreferencesUtil.getBoolean(activity, ValueUtils.ISLOGIN, false);
+        if(islogin == false){
+            //如果用户没有登录，提醒用户登录
+            //Log.i(ValueUtils.LOGTAG,"用户还未登录");
+            new SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("请登录?")
+                    .setContentText("您尚未登录!")
+                    .setCancelText("取消")
+                    .setConfirmText("登录")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                            Log.i(ValueUtils.LOGTAG, "alert取消按钮被点击");
+                        }
+                    })
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            Log.i(ValueUtils.LOGTAG,"alert确定按钮被点击");
+                            Intent intent = new Intent(activity, LoginActivity.class);
+                            activity.startActivity(intent);
+                        }
+                    })
+                    .show();
+
+        }else{
+            Intent intent = new Intent(activity,FoodCommentActivity.class);
+            intent.putExtra("foodId",activity.foodId);
+            activity.startActivity(intent);
+        }
     }
 }

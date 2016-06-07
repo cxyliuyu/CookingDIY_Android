@@ -23,5 +23,6 @@ public class ValueUtils {
     public static String ADDSAVE = SERVER + "/CaiApi/Save/addSave";
     public static String GETSAVEBYPAGE = SERVER + "/CaiApi/Save/getSaveByUserIdAndPage";
     public static String REGISTER = SERVER + "/CaiApi/User/register";
-
+    public static String GETCOMMENTBYFOODIDANDPAGE = SERVER+"/CaiApi/Comment/getCommentByfoodIdAndPage";
+    public static String ADDCOMMENT = SERVER + "/CaiApi/Comment/addComment";
 }

@@ -52,6 +52,11 @@
         <activity
             android:name=".Activity.RegisterActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Activity.listener.FoodCommentActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
