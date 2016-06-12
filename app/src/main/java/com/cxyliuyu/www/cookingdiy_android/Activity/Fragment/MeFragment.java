@@ -76,6 +76,7 @@ public class MeFragment extends Fragment {
         upload.setOnClickListener(meFragmentOnClickListener);
         myfood.setOnClickListener(meFragmentOnClickListener);
         quit.setOnClickListener(meFragmentOnClickListener);
+        myfood.setOnClickListener(meFragmentOnClickListener);
     }
 
     public void refreshUI(){

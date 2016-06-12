@@ -25,4 +25,5 @@ public class ValueUtils {
     public static String REGISTER = SERVER + "/CaiApi/User/register";
     public static String GETCOMMENTBYFOODIDANDPAGE = SERVER+"/CaiApi/Comment/getCommentByfoodIdAndPage";
     public static String ADDCOMMENT = SERVER + "/CaiApi/Comment/addComment";
+    public static String GETFOODSBYUSERID = SERVER + "/CaiApi/Food/getFoodsByUserIdAndPage";
 }

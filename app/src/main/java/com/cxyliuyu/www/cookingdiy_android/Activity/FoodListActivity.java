@@ -56,11 +56,15 @@ public class FoodListActivity extends AppCompatActivity {
     }
     private void initFoodList(){
         if(action != null){
+            String userId = SharedpreferencesUtil.getString(FoodListActivity.this,ValueUtils.USERID);
+            FoodBusiness foodBusiness = new FoodBusiness(FoodListActivity.this);
             if(action.equals("SHOWSAVE")){
                 //显示我的收藏
-                String userId = SharedpreferencesUtil.getString(FoodListActivity.this,ValueUtils.USERID);
-                FoodBusiness foodBusiness = new FoodBusiness(FoodListActivity.this);
                 foodBusiness.getSaveByPage(listView);
+            }
+            if(action.equals("SHOWFOOD")){
+                foodBusiness.getFoodByUserId(listView);
+
             }
         }
     }

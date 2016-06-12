@@ -261,10 +261,59 @@ public class FoodBusiness {
 
             @Override
             public void onMyError(VolleyError error) {
-                Log.i(ValueUtils.LOGTAG,"获得菜谱列表失败");
+                Log.i(ValueUtils.LOGTAG, "获得菜谱列表失败");
             }
         },map);
 
+    }
+
+    public void getFoodByUserId(final ListView listView){
+        Map<String,String>map = new HashMap<String,String>();
+        map.put("userId", SharedpreferencesUtil.getString(activity,ValueUtils.USERID));
+        map.put("pageSize", "10");
+        map.put("pageNum","1");
+        VolleyRequest.requestPost(activity, ValueUtils.GETFOODSBYUSERID, "GETSAVEBYPAGE", new VolleyListener() {
+            @Override
+            public void onMySuccess(String result) {
+                Log.i(ValueUtils.LOGTAG,"result = "+ result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    String code = jsonObject.getString("code");
+                    if (code.equals("200")) {
+                        JSONArray foodArray = jsonObject.getJSONArray("list");
+                        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+                        for (int i = 0; i < foodArray.length(); i++) {
+                            JSONObject foodJsonObject = foodArray.getJSONObject(i);
+                            String foodId = foodJsonObject.getString("id");
+                            String foodName = foodJsonObject.getString("foodname");
+                            String foodImg = foodJsonObject.getString("foodimg");
+                            String userId = foodJsonObject.getString("userid");
+                            String content = foodJsonObject.getString("content");
+                            HashMap<String, String> map = new HashMap<String, String>();
+                            map.put("foodId", foodId);
+                            map.put("foodName", foodName);
+                            map.put("foodImg", foodImg);
+                            map.put("content", content);
+                            map.put("userId", userId);
+                            list.add(map);
+                        }
+                        FoodListviewAdapter adapter = new FoodListviewAdapter(list, activity);
+                        listView.setAdapter(adapter);
+                        ListViewUtils.setListViewHeightBasedOnChildren(listView, activity);
+                    } else {
+                        Log.i(ValueUtils.LOGTAG,"获取我的菜谱失败");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                Log.i(ValueUtils.LOGTAG, "请求出错");
+                error.printStackTrace();
+            }
+        }, map);
     }
 
 

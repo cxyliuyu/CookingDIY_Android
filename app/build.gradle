@@ -31,6 +31,7 @@ dependencies {
     compile 'org.adw.library:discrete-seekbar:1.0.1'//时间的seekBar
     compile 'com.mcxiaoke.volley:library:1.0.19'//volley框架
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'//下拉刷新
+    compile 'com.wrapp.floatlabelededittext:library:0.0.6'//输入框
 
 
 }
