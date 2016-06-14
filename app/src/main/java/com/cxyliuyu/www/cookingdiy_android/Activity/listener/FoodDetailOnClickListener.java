@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.cxyliuyu.www.cookingdiy_android.Activity.FoodCommentActivity;
 import com.cxyliuyu.www.cookingdiy_android.Activity.FoodDetailActivity;
 import com.cxyliuyu.www.cookingdiy_android.Activity.LoginActivity;
 import com.cxyliuyu.www.cookingdiy_android.Business.FoodBusiness;

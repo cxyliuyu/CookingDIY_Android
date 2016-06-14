@@ -4,7 +4,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
-import com.cxyliuyu.www.cookingdiy_android.Activity.listener.FoodCommentActivity;
+import com.cxyliuyu.www.cookingdiy_android.Activity.FoodCommentActivity;
 import com.cxyliuyu.www.cookingdiy_android.R;
 import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
 import com.cxyliuyu.www.cookingdiy_android.utils.VolleyListener;
@@ -41,6 +41,8 @@ public class CommentBusiness {
                             String content = commentJsonObject.getString("content");
                             String time = commentJsonObject.getString("time");
                             String trueName = commentJsonObject.getString("truename");
+                            String userImg = commentJsonObject.getString("userimg");
+                            Log.i(ValueUtils.LOGTAG,trueName+userImg+time+content);
                         }
                     }
                 }catch (Exception e){
