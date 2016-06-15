@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgray"
-    tools:context="com.cxyliuyu.www.cookingdiy_android.Activity.listener.FoodCommentActivity">
+    tools:context="com.cxyliuyu.www.cookingdiy_android.Activity.AddFoodListActivity">
     <include
-        android:id="@+id/fooddetail_toobar"
+        android:id="@+id/foodcomment_toobar"
         layout="@layout/toolbar_default"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/linearLayout4">
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="发送"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <com.baoyz.widget.PullRefreshLayout
-        android:id="@+id/homefragment_pullrefreshlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/fooddetail_toobar">
+        android:layout_alignParentStart="true" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/linearLayout4">
+            android:layout_above="@+id/linearLayout4"
+            android:layout_below="@+id/foodcomment_toobar">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -59,7 +38,30 @@
                     android:text="点击加载更多"/>
             </LinearLayout>
         </ScrollView>
-    </com.baoyz.widget.PullRefreshLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linearLayout4">
+            <EditText
+                android:id="@+id/foodcomment_messageedittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"/>
+            <Button
+                android:id="@+id/foodcomment_sendmessagebutton"
+                android:layout_marginTop="5dp"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content"
+                android:text="发送"
+                android:background="@color/win8_green"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
 
 
 </RelativeLayout>
