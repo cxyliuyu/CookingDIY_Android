@@ -26,4 +26,10 @@ public class ValueUtils {
     public static String GETCOMMENTBYFOODIDANDPAGE = SERVER+"/CaiApi/Comment/getCommentByfoodIdAndPage";
     public static String ADDCOMMENT = SERVER + "/CaiApi/Comment/addComment";
     public static String GETFOODSBYUSERID = SERVER + "/CaiApi/Food/getFoodsByUserIdAndPage";
+    public static String GETCONVERSATION = SERVER + "/CaiApi/Comment/getConversations";
+    public static String UPLOADFILE = SERVER + "/CaiApi/File/upload";
+    public static String UPLOADDIR = "http://114.215.135.70/lypublic/1/Uploads/";
+    public static String ADDFOOD = SERVER + "/CaiApi/Food/addFood";
+    public static String ADDFOODSTEP = SERVER + "/CaiApi/Food/addFoodStep";
+    public static String ADDFOODLIST = SERVER + "/CaiApi/Food/addFoodList";
 }

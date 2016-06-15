@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -33,17 +34,25 @@ public class AddFoodStepActivity extends AppCompatActivity {
     FButton addFoodStepButton = null;
     File imgFile = null;
     Bitmap bitmap = null;
-
+    public EditText stepEditText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_step);
+        ImageView backimg = (ImageView)findViewById(R.id.toolbar_back);
+        backimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddFoodStepActivity.this.finish();
+            }
+        });
         toCameraLayout = (LinearLayout)findViewById(R.id.addfoodstep_tocameralayout);
         AddFoodStepListener addFoodStepListener = new AddFoodStepListener(AddFoodStepActivity.this);
         toCameraLayout.setOnClickListener(addFoodStepListener);
         imageView = (ImageView)findViewById(R.id.addfoodstep_foodimg);
         addFoodStepButton = (FButton)findViewById(R.id.addfoodstep_ok);
+        stepEditText = (EditText)findViewById(R.id.addfoodstep_stepcontent);
         addFoodStepButton.setOnClickListener(addFoodStepListener);
 
     }

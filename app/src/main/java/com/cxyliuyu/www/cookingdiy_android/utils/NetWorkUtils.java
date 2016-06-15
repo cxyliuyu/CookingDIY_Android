@@ -183,13 +183,26 @@ public class NetWorkUtils {
                 Log.e(ValueUtils.LOGTAG, "response code:"+res);
                 if(res==200)
                 {
-                    return SUCCESS;
+                    InputStream in = conn.getInputStream();
+                    in = conn.getInputStream();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                    StringBuffer buffer = new StringBuffer();
+                    String line = "";
+                    try {
+                        while ((line = br.readLine()) != null) {
+                            buffer.append(line);
+                        }
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    String result = buffer.toString();//返回字符串
+                    //return SUCCESS;
+                    return result;
                 }
             }
-        } catch (MalformedURLException e)
-        { e.printStackTrace(); }
-        catch (IOException e)
-        { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return FAILURE;
     }
 

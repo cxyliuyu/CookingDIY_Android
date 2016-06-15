@@ -54,6 +54,8 @@
             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
             <ListView
                 android:id="@+id/uploadactivity_foodlistlistview"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -61,6 +63,7 @@
             </ListView>
             <LinearLayout
                 android:id="@+id/uploadactivity_addfoodlistlayout"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
@@ -84,6 +87,7 @@
             </LinearLayout>
             <ListView
                 android:id="@+id/uploadactivity_foodsteplistview"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -95,7 +99,7 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:layout_marginRight="10dp">
                 <ImageView

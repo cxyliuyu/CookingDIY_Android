@@ -1,20 +1,18 @@
 package com.cxyliuyu.www.cookingdiy_android.Activity.listener;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-
 import com.cxyliuyu.www.cookingdiy_android.Activity.AddFoodStepActivity;
 import com.cxyliuyu.www.cookingdiy_android.R;
+import com.cxyliuyu.www.cookingdiy_android.utils.AddFoodUtil;
 import com.cxyliuyu.www.cookingdiy_android.utils.NetWorkUtils;
 import com.cxyliuyu.www.cookingdiy_android.utils.ValueUtils;
-
+import org.json.JSONObject;
 import java.io.File;
-import java.lang.reflect.AccessibleObject;
 
 /**
  * Created by ly on 2016/6/12.
@@ -22,6 +20,8 @@ import java.lang.reflect.AccessibleObject;
 public class AddFoodStepListener implements View.OnClickListener{
 
     AddFoodStepActivity activity;
+    String imgUrl = null;
+    String stepContext = null;
 
     public AddFoodStepListener(AddFoodStepActivity activity){
         this.activity = activity;
@@ -36,7 +36,6 @@ public class AddFoodStepListener implements View.OnClickListener{
             case R.id.addfoodstep_ok:
                 addStep();
                 break;
-
         }
     }
     private void toCamera(){
@@ -45,13 +44,25 @@ public class AddFoodStepListener implements View.OnClickListener{
     }
     private  void addStep(){
         //添加做菜步骤
+
+        final String content = activity.stepEditText.getText().toString();
         final File file = activity.getImgFile();
         final Handler handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 String result = (String)msg.obj;
-                Log.i(ValueUtils.LOGTAG,"上传 reslut = "+result);
+                stepContext = activity.stepEditText.getText().toString();
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    imgUrl = ValueUtils.UPLOADDIR+jsonObject.getString("url");
+                    Log.i(ValueUtils.LOGTAG,"上传 imgUrl = "+imgUrl);
+                    AddFoodUtil.addStep(content,imgUrl,activity);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                activity.finish();
+
             }
         };
         if(file!=null){
@@ -63,8 +74,10 @@ public class AddFoodStepListener implements View.OnClickListener{
                     Message msg = new Message();
                     msg.obj = result;
                     handler.sendMessage(msg);
+
                 }
             }).start();
+
 
         }else{
             Log.i(ValueUtils.LOGTAG,"文件为空");
