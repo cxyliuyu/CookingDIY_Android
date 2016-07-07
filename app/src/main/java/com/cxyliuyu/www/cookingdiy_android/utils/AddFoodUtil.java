@@ -82,7 +82,10 @@ public class AddFoodUtil {
     public static JSONObject getJSONObject(Context context)throws JSONException{
         JSONObject foodJSONObject = null;
         String foodJSONString = SharedpreferencesUtil.getString(context,"foodJSONString");
-        if(foodJSONString == null){
+        Log.i(ValueUtils.LOGTAG,"foodString = "+foodJSONString);
+        if(foodJSONString == null||foodJSONString.equals("")){
+            Log.i(ValueUtils.LOGTAG,"测试");
+
             foodJSONObject = new JSONObject();
         }else{
             foodJSONObject = new JSONObject(foodJSONString);
